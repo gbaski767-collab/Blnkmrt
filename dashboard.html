@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — BlankMarket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <div class="header-actions">
+        <a href="marketplace.html" class="icon-btn" aria-label="Browse marketplace">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <div class="drawer-account" id="drawerAccount"></div>
+    <ul class="drawer-links">
+      <li><a href="index.html" data-page="index">Home</a></li>
+      <li><a href="marketplace.html" data-page="marketplace">Marketplace</a></li>
+      <li><a href="orders.html" data-page="orders">My Orders</a></li>
+      <li><a href="dashboard.html" data-page="dashboard">Dashboard</a></li>
+      <li><a href="profile-setup.html" data-page="profile-setup">Profile &amp; Settings</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <button id="logoutBtn" class="btn btn-danger btn-block btn-sm" hidden>Sign out</button>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top:28px;padding-bottom:60px;">
+    <h1 style="font-size:1.5rem;margin-bottom:20px;" id="greeting">Dashboard</h1>
+
+    <!-- Balance card -->
+    <div class="balance-card">
+      <div class="balance-top">
+        <span class="balance-label">Available balance</span>
+        <div class="currency-switch">
+          <span id="currencyFlag">🇳🇬</span>
+          <select id="currencySelect" aria-label="Display currency">
+            <option value="NGN">NGN</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+      </div>
+      <div class="balance-amount" id="balanceAmount">
+        <span class="skeleton" style="display:inline-block;width:160px;height:34px;"></span>
+      </div>
+      <div class="balance-actions">
+        <button class="btn btn-primary" id="openAddFundsBtn">+ Add funds</button>
+        <a href="marketplace.html" class="btn btn-ghost">Browse marketplace</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-value" id="statOrders">—</div>
+        <div class="stat-label">Total orders</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="statDeposits">—</div>
+        <div class="stat-label">Total deposited</div>
+      </div>
+    </div>
+
+    <!-- Recent transactions -->
+    <div class="section-head" style="margin-top:32px;">
+      <h2 style="font-size:1.2rem;">Recent transactions</h2>
+      <a href="orders.html" class="see-all">View orders →</a>
+    </div>
+    <div class="card" id="transactionsCard">
+      <div class="skeleton" style="height:60px;margin-bottom:10px;"></div>
+      <div class="skeleton" style="height:60px;"></div>
+    </div>
+  </div>
+
+  <!-- ===== Add Funds Modal ===== -->
+  <div class="modal-overlay" id="addFundsOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Add funds</h3>
+        <button class="modal-close" id="closeAddFundsBtn" aria-label="Close">×</button>
+      </div>
+
+      <!-- Step 1: amount + currency + method -->
+      <div id="fundsStep1">
+        <div class="field">
+          <label for="fundsAmount">Amount</label>
+          <input type="number" id="fundsAmount" min="1" step="0.01" placeholder="0.00" />
+        </div>
+        <div class="field">
+          <label for="fundsCurrency">Currency</label>
+          <select id="fundsCurrency">
+            <option value="NGN">🇳🇬 NGN — Nigerian Naira</option>
+            <option value="USD">🇺🇸 USD — US Dollar</option>
+          </select>
+        </div>
+
+        <label style="display:block;margin-bottom:8px;font-size:0.85rem;font-weight:600;color:var(--muted);">Payment method</label>
+        <label class="pay-method is-selected">
+          <span class="pm-icon">🏦</span>
+          <span>
+            <span class="pm-name" style="display:block;">Bank Transfer</span>
+            <span class="pm-desc">Local NGN transfer, credited after confirmation</span>
+          </span>
+          <input type="radio" name="fundsMethod" value="bank_transfer" checked />
+        </label>
+        <label class="pay-method">
+          <span class="pm-icon">₮</span>
+          <span>
+            <span class="pm-name" style="display:block;">Crypto (USDT)</span>
+            <span class="pm-desc">Send USDT (TRC20), credited after confirmation</span>
+          </span>
+          <input type="radio" name="fundsMethod" value="crypto_usdt" />
+        </label>
+
+        <button class="btn btn-primary btn-block mt-16" id="continueFundsBtn">Continue</button>
+      </div>
+
+      <!-- Step 2: instructions -->
+      <div id="fundsStep2" class="hidden">
+        <div id="fundsInstructions"></div>
+        <button class="btn btn-primary btn-block mt-16" id="confirmFundsBtn">
+          <span class="btn-label">I've sent the payment</span>
+        </button>
+        <button class="btn btn-ghost btn-block mt-16" id="backFundsBtn">Back</button>
+        <p class="field-hint mt-16">Demo mode: this credits your wallet instantly for testing. In production, this step waits for a real payment confirmation webhook.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="toast.js"></script>
+  <script src="currency.js"></script>
+  <script src="utils.js"></script>
+  <script src="auth-guard.js"></script>
+  <script src="nav.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

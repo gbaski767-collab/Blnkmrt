@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile & Settings — BlankMarket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <div class="header-actions">
+        <a href="marketplace.html" class="icon-btn" aria-label="Browse marketplace">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <div class="drawer-account" id="drawerAccount"></div>
+    <ul class="drawer-links">
+      <li><a href="index.html" data-page="index">Home</a></li>
+      <li><a href="marketplace.html" data-page="marketplace">Marketplace</a></li>
+      <li><a href="orders.html" data-page="orders">My Orders</a></li>
+      <li><a href="dashboard.html" data-page="dashboard">Dashboard</a></li>
+      <li><a href="profile-setup.html" data-page="profile-setup">Profile &amp; Settings</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <button id="logoutBtn" class="btn btn-danger btn-block btn-sm" hidden>Sign out</button>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top:28px;padding-bottom:60px;max-width:640px;">
+    <h1 style="font-size:1.5rem;margin-bottom:20px;">Profile &amp; Settings</h1>
+
+    <!-- Personal info -->
+    <div class="accordion-item is-open">
+      <button class="accordion-trigger" data-accordion="personal">
+        Personal information
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-panel">
+        <div class="accordion-panel-inner">
+          <form id="personalForm" novalidate>
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" placeholder="Jane Doe" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" disabled />
+              <div class="field-hint">Email can't be changed here.</div>
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" placeholder="+234 800 000 0000" />
+            </div>
+            <button type="submit" class="btn btn-primary" id="savePersonalBtn">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Change password -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" data-accordion="password">
+        Change password
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-panel">
+        <div class="accordion-panel-inner">
+          <form id="passwordForm" novalidate>
+            <div class="field">
+              <label for="oldPassword">Current password</label>
+              <div class="password-field">
+                <input type="password" id="oldPassword" autocomplete="current-password" />
+                <button type="button" class="password-toggle" data-target="oldPassword" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="newPassword">New password</label>
+              <div class="password-field">
+                <input type="password" id="newPassword" minlength="6" autocomplete="new-password" />
+                <button type="button" class="password-toggle" data-target="newPassword" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="confirmNewPassword">Confirm new password</label>
+              <div class="password-field">
+                <input type="password" id="confirmNewPassword" minlength="6" autocomplete="new-password" />
+                <button type="button" class="password-toggle" data-target="confirmNewPassword" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="savePasswordBtn">Update password</button>
+            <p class="field-hint mt-16">Forgot your current password? <a href="forgot-password.html" class="link-gold">Reset it here</a>.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" data-accordion="prefs">
+        Preferences
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-panel">
+        <div class="accordion-panel-inner">
+          <div class="field">
+            <label for="defaultCurrency">Default display currency</label>
+            <select id="defaultCurrency">
+              <option value="NGN">🇳🇬 NGN — Nigerian Naira</option>
+              <option value="USD">🇺🇸 USD — US Dollar</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-primary" id="savePrefsBtn">Save preference</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="toast.js"></script>
+  <script src="currency.js"></script>
+  <script src="utils.js"></script>
+  <script src="auth-guard.js"></script>
+  <script src="nav.js"></script>
+  <script src="profile-setup.js"></script>
+</body>
+</html>

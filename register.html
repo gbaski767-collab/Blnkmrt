@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — BlankMarket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <div class="header-actions">
+        <a href="marketplace.html" class="icon-btn" aria-label="Browse marketplace">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <div class="drawer-account" id="drawerAccount"></div>
+    <ul class="drawer-links">
+      <li><a href="index.html" data-page="index">Home</a></li>
+      <li><a href="marketplace.html" data-page="marketplace">Marketplace</a></li>
+      <li><a href="orders.html" data-page="orders">My Orders</a></li>
+      <li><a href="dashboard.html" data-page="dashboard">Dashboard</a></li>
+      <li><a href="profile-setup.html" data-page="profile-setup">Profile &amp; Settings</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <button id="logoutBtn" class="btn btn-danger btn-block btn-sm" hidden>Sign out</button>
+    </div>
+  </nav>
+
+  <!-- ===== Register form ===== -->
+  <div class="auth-shell">
+    <div class="auth-card card">
+      <span class="eyebrow">Get started</span>
+      <h1>Create your account</h1>
+      <p class="sub">Set up your wallet and start buying in minutes.</p>
+
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Jane Doe" required autocomplete="name" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number <span style="font-weight:400;color:var(--muted-2);">(optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+234 800 000 0000" autocomplete="tel" />
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="password-field">
+            <input type="password" id="password" name="password" placeholder="At least 6 characters" required autocomplete="new-password" minlength="6" />
+            <button type="button" class="password-toggle" data-target="password" aria-label="Show password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <div class="password-field">
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" required autocomplete="new-password" minlength="6" />
+            <button type="button" class="password-toggle" data-target="confirmPassword" aria-label="Show password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="field-error" id="passwordMismatchError">Passwords don't match.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="registerSubmit">
+          <span class="btn-label">Create account</span>
+        </button>
+      </form>
+
+      <p class="auth-footer-note">Already have an account? <a href="login.html" class="link-gold">Sign in</a></p>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="toast.js"></script>
+  <script src="currency.js"></script>
+  <script src="utils.js"></script>
+  <script src="auth-guard.js"></script>
+  <script src="nav.js"></script>
+  <script src="register.js"></script>
+</body>
+</html>

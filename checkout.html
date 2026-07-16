@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — BlankMarket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <div class="header-actions">
+        <a href="marketplace.html" class="icon-btn" aria-label="Browse marketplace">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <a href="index.html" class="logo">Blank<span>Market</span></a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <div class="drawer-account" id="drawerAccount"></div>
+    <ul class="drawer-links">
+      <li><a href="index.html" data-page="index">Home</a></li>
+      <li><a href="marketplace.html" data-page="marketplace">Marketplace</a></li>
+      <li><a href="orders.html" data-page="orders">My Orders</a></li>
+      <li><a href="dashboard.html" data-page="dashboard">Dashboard</a></li>
+      <li><a href="profile-setup.html" data-page="profile-setup">Profile &amp; Settings</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <button id="logoutBtn" class="btn btn-danger btn-block btn-sm" hidden>Sign out</button>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top:28px;padding-bottom:60px;max-width:520px;">
+    <h1 style="font-size:1.5rem;margin-bottom:20px;">Checkout</h1>
+
+    <div id="checkoutBody">
+      <div class="skeleton" style="height:260px;border-radius:20px;"></div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="toast.js"></script>
+  <script src="currency.js"></script>
+  <script src="utils.js"></script>
+  <script src="auth-guard.js"></script>
+  <script src="nav.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>
