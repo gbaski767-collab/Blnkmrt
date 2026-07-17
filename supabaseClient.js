@@ -12,8 +12,8 @@
 //   <script src="js/supabaseClient.js"></script>
 // ============================================================================
 
-const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
+const SUPABASE_URL = 'https://pequwccubzhgwiysayef.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBlcXV3Y2N1YnpoZ3dpeXNheWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwNTY2NzksImV4cCI6MjA5OTYzMjY3OX0.wbSUArhmXsVvleeCipyiXGCuLnd4w7GkwT9hZ4HN5VQ';
 
 // `persistSession` keeps the user logged in across page loads by storing the
 // session in localStorage — necessary here because this is a classic
